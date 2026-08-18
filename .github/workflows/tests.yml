@@ -20,7 +20,11 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run tests
-        run: pytest -n auto
+        # -n 2, not -n auto: GitHub-hosted runners get oversubscribed running
+        # 4+ real headless Chrome instances concurrently, which starves each
+        # browser's JS execution enough that even generous explicit waits
+        # time out. 2 workers is well within the runner's actual headroom.
+        run: pytest -n 2
         env:
           HEADLESS: "true"
 

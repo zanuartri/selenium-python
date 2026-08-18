@@ -59,7 +59,7 @@ Each run writes `results/results.json`:
 
 ## CI
 
-`.github/workflows/tests.yml` installs dependencies, runs the suite headless against Chrome (preinstalled on the `ubuntu-latest` runner, picked up automatically by Selenium Manager), and uploads `results/results.json` as a build artifact on every push/PR to `main`. The build fails whenever pytest reports a failure (default pytest exit code).
+`.github/workflows/tests.yml` installs dependencies, runs the suite headless against Chrome (preinstalled on the `ubuntu-latest` runner, picked up automatically by Selenium Manager), and uploads `results/results.json` as a build artifact on every push/PR to `main`. The build fails whenever pytest reports a failure (default pytest exit code). CI runs with `-n 2` rather than `-n auto` — the runner's CPU headroom doesn't comfortably sustain more concurrent real Chrome instances than that without starving each browser's JS execution.
 
 ## Parity with the Playwright repos
 
