@@ -17,12 +17,15 @@ class SaucedemoCheckoutPage(BasePage):
 
     def fill_form(self, first_name: str = "", last_name: str = "", postal_code: str = "") -> None:
         if first_name:
-            self.driver.find_element(*self.FIRST_NAME_INPUT).send_keys(first_name)
+            self.wait().until(EC.visibility_of_element_located(self.FIRST_NAME_INPUT)).send_keys(first_name)
         if last_name:
             self.driver.find_element(*self.LAST_NAME_INPUT).send_keys(last_name)
         if postal_code:
             self.driver.find_element(*self.POSTAL_CODE_INPUT).send_keys(postal_code)
-        self.driver.find_element(*self.CONTINUE_BUTTON).click()
+        # Wait for the button to be clickable, not just present — under parallel
+        # load its JS click-handler can bind after the element itself renders,
+        # and a click before that lands silently does nothing.
+        self.wait().until(EC.element_to_be_clickable(self.CONTINUE_BUTTON)).click()
 
     def error_message_text(self) -> str:
         return self.wait().until(EC.visibility_of_element_located(self.ERROR_MESSAGE)).text

@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 
 from pages.base_page import BasePage
 
@@ -13,6 +14,6 @@ class SaucedemoLoginPage(BasePage):
     LOGIN_BUTTON = (By.ID, "login-button")
 
     def login(self, username: str, password: str) -> None:
-        self.driver.find_element(*self.USERNAME_INPUT).send_keys(username)
+        self.wait().until(EC.visibility_of_element_located(self.USERNAME_INPUT)).send_keys(username)
         self.driver.find_element(*self.PASSWORD_INPUT).send_keys(password)
-        self.driver.find_element(*self.LOGIN_BUTTON).click()
+        self.wait().until(EC.element_to_be_clickable(self.LOGIN_BUTTON)).click()
