@@ -32,22 +32,22 @@ class BasePage:
         click handler is actually bound, so Selenium's element_to_be_clickable
         check can pass on an element that silently no-ops when clicked. Re-clicking
         after a short wait — rather than one click plus a long wait — is what
-        actually recovers from that race.
+        recovers from that race.
+
+        Clicks are dispatched via JS (element.click()) rather than WebDriver's
+        native coordinate-based click: on Linux headless Chrome the native click
+        was observed to silently miss this button 100% of the time (confirmed via
+        CI logs — no navigation, no error render, no console errors either), while
+        it works fine on Windows. A JS-dispatched click still fires a real 'click'
+        event the app's listener sees, without depending on viewport/coordinate
+        rendering that differs across platforms.
         """
         last_exc: TimeoutException | None = None
-        for attempt in range(retries):
-            self.wait().until(EC.element_to_be_clickable(click_locator)).click()
+        for _ in range(retries):
+            element = self.wait().until(EC.element_to_be_clickable(click_locator))
+            self.driver.execute_script("arguments[0].click();", element)
             try:
                 return self.wait(retry_timeout).until(condition)
             except TimeoutException as exc:
                 last_exc = exc
-                print(
-                    f"[click_until DEBUG] attempt {attempt + 1}/{retries} on {click_locator}: "
-                    f"url={self.driver.current_url!r} title={self.driver.title!r}"
-                )
-                try:
-                    for entry in self.driver.get_log("browser"):
-                        print(f"[click_until DEBUG] console: {entry}")
-                except Exception as log_exc:  # get_log support varies by driver/browser version
-                    print(f"[click_until DEBUG] get_log unavailable: {log_exc}")
         raise last_exc

@@ -31,7 +31,6 @@ def driver() -> Iterator[WebDriver]:
     options.add_argument("--window-size=1280,900")
     options.add_argument("--log-level=3")
     options.add_experimental_option("excludeSwitches", ["enable-logging"])
-    options.set_capability("goog:loggingPrefs", {"browser": "ALL"})
 
     chrome_driver = webdriver.Chrome(options=options)
     yield chrome_driver

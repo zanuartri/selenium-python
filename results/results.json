@@ -1,32 +1,82 @@
 {
   "stack": "selenium-python",
   "platform": "web",
-  "run_at": "2026-08-18T14:21:54.106209+00:00",
-  "total": 4,
-  "passed": 4,
+  "run_at": "2026-08-18T14:31:25.413102+00:00",
+  "total": 14,
+  "passed": 14,
   "failed": 0,
   "skipped": 0,
-  "duration_seconds": 34.1759,
+  "duration_seconds": 224.1824,
   "tests": [
+    {
+      "name": "tests/test_dynamic_content.py::test_content_appears_after_async_load[1]",
+      "status": "passed",
+      "duration": 10.4237
+    },
+    {
+      "name": "tests/test_dynamic_content.py::test_content_appears_after_async_load[2]",
+      "status": "passed",
+      "duration": 14.1167
+    },
+    {
+      "name": "tests/test_file_upload.py::test_file_upload_shows_uploaded_filename",
+      "status": "passed",
+      "duration": 4.7607
+    },
     {
       "name": "tests/test_form_validation.py::test_checkout_requires_first_name",
       "status": "passed",
-      "duration": 0.7462
+      "duration": 0.6461
     },
     {
       "name": "tests/test_form_validation.py::test_checkout_requires_last_name",
       "status": "passed",
-      "duration": 0.7137
+      "duration": 3.1794
     },
     {
       "name": "tests/test_form_validation.py::test_checkout_requires_postal_code",
       "status": "passed",
-      "duration": 0.8757
+      "duration": 1.7874
     },
     {
       "name": "tests/test_form_validation.py::test_checkout_with_all_fields_proceeds",
       "status": "passed",
-      "duration": 1.8941
+      "duration": 3.289
+    },
+    {
+      "name": "tests/test_iframe.py::test_can_read_content_from_nested_frames",
+      "status": "passed",
+      "duration": 1.7778
+    },
+    {
+      "name": "tests/test_login.py::test_login_with_valid_credentials_reaches_secure_area",
+      "status": "passed",
+      "duration": 5.1576
+    },
+    {
+      "name": "tests/test_login.py::test_login_with_invalid_credentials_shows_error",
+      "status": "passed",
+      "duration": 4.1128
+    },
+    {
+      "name": "tests/test_multi_window.py::test_new_window_opens_and_shows_expected_heading",
+      "status": "passed",
+      "duration": 5.2937
+    },
+    {
+      "name": "tests/test_parallel_safe.py::test_adding_elements_yields_matching_delete_button_count[1]",
+      "status": "passed",
+      "duration": 10.2885
+    },
+    {
+      "name": "tests/test_parallel_safe.py::test_adding_elements_yields_matching_delete_button_count[3]",
+      "status": "passed",
+      "duration": 37.156
+    },
+    {
+      "name": "tests/test_parallel_safe.py::test_adding_elements_yields_matching_delete_button_count[5]",
+      "status": "passed",
+      "duration": 10.6926
     }
   ]
 }
