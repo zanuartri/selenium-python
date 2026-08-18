@@ -14,4 +14,4 @@ class SaucedemoInventoryPage(BasePage):
 
     def add_item_and_go_to_cart(self) -> None:
         self.wait().until(EC.element_to_be_clickable(self.ADD_TO_CART_BUTTON)).click()
-        self.driver.find_element(*self.CART_LINK).click()
+        self.click_until(self.CART_LINK, EC.url_contains("/cart.html"))

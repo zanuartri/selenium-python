@@ -16,4 +16,4 @@ class SaucedemoLoginPage(BasePage):
     def login(self, username: str, password: str) -> None:
         self.wait().until(EC.visibility_of_element_located(self.USERNAME_INPUT)).send_keys(username)
         self.driver.find_element(*self.PASSWORD_INPUT).send_keys(password)
-        self.wait().until(EC.element_to_be_clickable(self.LOGIN_BUTTON)).click()
+        self.click_until(self.LOGIN_BUTTON, EC.url_contains("/inventory.html"))

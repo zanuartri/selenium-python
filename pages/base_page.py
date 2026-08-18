@@ -1,4 +1,8 @@
+from typing import Callable
+
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.remote.webdriver import WebDriver
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 DEFAULT_TIMEOUT = 10
@@ -21,3 +25,20 @@ class BasePage:
         page object explicitly polls for the condition it needs via expected_conditions.
         """
         return WebDriverWait(self.driver, timeout)
+
+    def click_until(self, click_locator: tuple[str, str], condition: Callable, retries: int = 3, retry_timeout: int = 5):
+        """Click, then wait for the click's effect (e.g. a navigation). Some SPAs
+        (saucedemo.com among them) render a button as visible/enabled before its
+        click handler is actually bound, so Selenium's element_to_be_clickable
+        check can pass on an element that silently no-ops when clicked. Re-clicking
+        after a short wait — rather than one click plus a long wait — is what
+        actually recovers from that race.
+        """
+        last_exc: TimeoutException | None = None
+        for _ in range(retries):
+            self.wait().until(EC.element_to_be_clickable(click_locator)).click()
+            try:
+                return self.wait(retry_timeout).until(condition)
+            except TimeoutException as exc:
+                last_exc = exc
+        raise last_exc

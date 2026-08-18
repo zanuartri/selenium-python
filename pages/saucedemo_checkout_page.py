@@ -22,10 +22,13 @@ class SaucedemoCheckoutPage(BasePage):
             self.driver.find_element(*self.LAST_NAME_INPUT).send_keys(last_name)
         if postal_code:
             self.driver.find_element(*self.POSTAL_CODE_INPUT).send_keys(postal_code)
-        # Wait for the button to be clickable, not just present — under parallel
-        # load its JS click-handler can bind after the element itself renders,
-        # and a click before that lands silently does nothing.
-        self.wait().until(EC.element_to_be_clickable(self.CONTINUE_BUTTON)).click()
+        # Continue either navigates to step two or renders a validation error —
+        # click_until re-clicks if neither has happened yet (SPA click-handler race).
+        self.click_until(
+            self.CONTINUE_BUTTON,
+            lambda driver: EC.url_contains("checkout-step-two")(driver)
+            or EC.visibility_of_element_located(self.ERROR_MESSAGE)(driver),
+        )
 
     def error_message_text(self) -> str:
         return self.wait().until(EC.visibility_of_element_located(self.ERROR_MESSAGE)).text

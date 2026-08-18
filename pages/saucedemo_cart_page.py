@@ -12,4 +12,4 @@ class SaucedemoCartPage(BasePage):
     CHECKOUT_BUTTON = (By.ID, "checkout")
 
     def go_to_checkout(self) -> None:
-        self.wait().until(EC.element_to_be_clickable(self.CHECKOUT_BUTTON)).click()
+        self.click_until(self.CHECKOUT_BUTTON, EC.url_contains("/checkout-step-one.html"))
