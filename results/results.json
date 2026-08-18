@@ -1,82 +1,32 @@
 {
   "stack": "selenium-python",
   "platform": "web",
-  "run_at": "2026-08-18T14:17:26.707695+00:00",
-  "total": 14,
-  "passed": 14,
+  "run_at": "2026-08-18T14:21:54.106209+00:00",
+  "total": 4,
+  "passed": 4,
   "failed": 0,
   "skipped": 0,
-  "duration_seconds": 99.1475,
+  "duration_seconds": 34.1759,
   "tests": [
-    {
-      "name": "tests/test_file_upload.py::test_file_upload_shows_uploaded_filename",
-      "status": "passed",
-      "duration": 5.3948
-    },
-    {
-      "name": "tests/test_dynamic_content.py::test_content_appears_after_async_load[1]",
-      "status": "passed",
-      "duration": 9.9765
-    },
     {
       "name": "tests/test_form_validation.py::test_checkout_requires_first_name",
       "status": "passed",
-      "duration": 0.8083
+      "duration": 0.7462
     },
     {
       "name": "tests/test_form_validation.py::test_checkout_requires_last_name",
       "status": "passed",
-      "duration": 0.8711
-    },
-    {
-      "name": "tests/test_dynamic_content.py::test_content_appears_after_async_load[2]",
-      "status": "passed",
-      "duration": 9.1268
-    },
-    {
-      "name": "tests/test_form_validation.py::test_checkout_with_all_fields_proceeds",
-      "status": "passed",
-      "duration": 5.7012
+      "duration": 0.7137
     },
     {
       "name": "tests/test_form_validation.py::test_checkout_requires_postal_code",
       "status": "passed",
-      "duration": 8.2309
+      "duration": 0.8757
     },
     {
-      "name": "tests/test_iframe.py::test_can_read_content_from_nested_frames",
+      "name": "tests/test_form_validation.py::test_checkout_with_all_fields_proceeds",
       "status": "passed",
-      "duration": 9.0089
-    },
-    {
-      "name": "tests/test_login.py::test_login_with_valid_credentials_reaches_secure_area",
-      "status": "passed",
-      "duration": 7.877
-    },
-    {
-      "name": "tests/test_login.py::test_login_with_invalid_credentials_shows_error",
-      "status": "passed",
-      "duration": 5.9208
-    },
-    {
-      "name": "tests/test_multi_window.py::test_new_window_opens_and_shows_expected_heading",
-      "status": "passed",
-      "duration": 4.6879
-    },
-    {
-      "name": "tests/test_parallel_safe.py::test_adding_elements_yields_matching_delete_button_count[1]",
-      "status": "passed",
-      "duration": 4.3483
-    },
-    {
-      "name": "tests/test_parallel_safe.py::test_adding_elements_yields_matching_delete_button_count[3]",
-      "status": "passed",
-      "duration": 4.776
-    },
-    {
-      "name": "tests/test_parallel_safe.py::test_adding_elements_yields_matching_delete_button_count[5]",
-      "status": "passed",
-      "duration": 3.8357
+      "duration": 1.8941
     }
   ]
 }

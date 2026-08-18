@@ -35,10 +35,19 @@ class BasePage:
         actually recovers from that race.
         """
         last_exc: TimeoutException | None = None
-        for _ in range(retries):
+        for attempt in range(retries):
             self.wait().until(EC.element_to_be_clickable(click_locator)).click()
             try:
                 return self.wait(retry_timeout).until(condition)
             except TimeoutException as exc:
                 last_exc = exc
+                print(
+                    f"[click_until DEBUG] attempt {attempt + 1}/{retries} on {click_locator}: "
+                    f"url={self.driver.current_url!r} title={self.driver.title!r}"
+                )
+                try:
+                    for entry in self.driver.get_log("browser"):
+                        print(f"[click_until DEBUG] console: {entry}")
+                except Exception as log_exc:  # get_log support varies by driver/browser version
+                    print(f"[click_until DEBUG] get_log unavailable: {log_exc}")
         raise last_exc
