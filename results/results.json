@@ -1,0 +1,17 @@
+{
+  "stack": "selenium-python",
+  "platform": "web",
+  "run_at": "2026-08-18T13:03:58.616630+00:00",
+  "total": 1,
+  "passed": 1,
+  "failed": 0,
+  "skipped": 0,
+  "duration_seconds": 11.0839,
+  "tests": [
+    {
+      "name": "tests/test_multi_window.py::test_new_window_opens_and_shows_expected_heading",
+      "status": "passed",
+      "duration": 3.5728
+    }
+  ]
+}
