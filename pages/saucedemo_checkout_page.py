@@ -22,6 +22,11 @@ class SaucedemoCheckoutPage(BasePage):
             self.driver.find_element(*self.LAST_NAME_INPUT).send_keys(last_name)
         if postal_code:
             self.driver.find_element(*self.POSTAL_CODE_INPUT).send_keys(postal_code)
+        print(
+            f"[fill_form DEBUG] first-name={self.driver.find_element(*self.FIRST_NAME_INPUT).get_attribute('value')!r} "
+            f"last-name={self.driver.find_element(*self.LAST_NAME_INPUT).get_attribute('value')!r} "
+            f"postal-code={self.driver.find_element(*self.POSTAL_CODE_INPUT).get_attribute('value')!r}"
+        )
         # Continue either navigates to step two or renders a validation error —
         # click_until re-clicks if neither has happened yet (SPA click-handler race).
         self.click_until(
